@@ -1,0 +1,449 @@
+/* ============================================
+   bekircelik.de – Kommunalwahl 2026
+   Design-Vorlage: Wahlplakat Die Linke
+   Weniger ist mehr: Weiß, Schwarz, Linke-Rot
+   Schrift: Work Sans
+   ============================================ */
+
+:root {
+  --rot: #e3000f;
+  --schwarz: #191919;
+  --weiss: #ffffff;
+  --grau: #5f5f5f;
+  --hellgrau: #f4f4f4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Work Sans", sans-serif;
+  background: var(--weiss);
+  color: var(--schwarz);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ===== Kopfzeile ===== */
+.kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px clamp(20px, 5vw, 64px);
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.kopf-name {
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--schwarz);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.kopf-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+}
+
+.kopf-nav a {
+  text-decoration: none;
+  color: var(--schwarz);
+  font-weight: 500;
+  font-size: 15.5px;
+}
+
+.kopf-nav a:hover { color: var(--rot); }
+
+.kopf-cta {
+  background: var(--rot);
+  color: var(--weiss) !important;
+  padding: 9px 18px;
+  font-weight: 700;
+}
+
+.kopf-cta:hover { background: var(--schwarz); }
+
+/* ===== Hero ===== */
+.held {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 64px) clamp(20px, 5vw, 64px) clamp(48px, 7vw, 96px);
+}
+
+.held-bild {
+  position: relative;
+}
+
+.held-bild img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 60% 20%;
+}
+
+/* Plakat-Chips: weiße Blöcke mit rotem Text, wie auf dem Wahlplakat */
+.held-chips {
+  position: absolute;
+  left: 0;
+  bottom: clamp(24px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.chip {
+  background: var(--weiss);
+  padding: 6px 16px 8px;
+  display: inline-block;
+}
+
+.chip-rot {
+  color: var(--rot);
+  font-weight: 800;
+  font-size: clamp(26px, 3.6vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.chip-name {
+  color: var(--schwarz);
+  font-weight: 300;
+  font-size: clamp(20px, 2.4vw, 30px);
+  margin-top: -2px;
+}
+
+.held-info { padding-top: 8px; }
+
+/* Rotes Kästchen, leicht gedreht – Zitat vom Linke-Logo-Block */
+.wahl-badge {
+  display: inline-block;
+  background: var(--rot);
+  color: var(--weiss);
+  font-weight: 800;
+  font-size: clamp(15px, 1.6vw, 18px);
+  padding: 8px 16px;
+  transform: rotate(-2deg);
+  margin-bottom: 28px;
+}
+
+.kandidatur {
+  list-style: none;
+  margin-bottom: 28px;
+}
+
+.kandidatur li {
+  padding: 14px 0;
+  border-top: 2px solid var(--schwarz);
+  display: flex;
+  flex-direction: column;
+}
+
+.kandidatur li:last-child { border-bottom: 2px solid var(--schwarz); }
+
+.kandidatur strong {
+  font-weight: 700;
+  font-size: clamp(17px, 1.9vw, 21px);
+}
+
+.kandidatur span {
+  color: var(--grau);
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
+.held-satz {
+  font-size: clamp(17px, 1.9vw, 21px);
+  font-weight: 500;
+  max-width: 420px;
+  margin-bottom: 28px;
+}
+
+/* ===== Knöpfe ===== */
+.knopf {
+  display: inline-block;
+  background: var(--rot);
+  color: var(--weiss);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16.5px;
+  padding: 15px 28px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+
+.knopf:hover { background: var(--schwarz); }
+
+.knopf-weiss {
+  background: var(--weiss);
+  color: var(--rot);
+}
+
+.knopf-weiss:hover {
+  background: var(--schwarz);
+  color: var(--weiss);
+}
+
+/* ===== Abschnitte ===== */
+.abschnitt {
+  padding: clamp(56px, 8vw, 110px) clamp(20px, 5vw, 64px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.abschnitt h2 {
+  font-weight: 800;
+  font-size: clamp(30px, 4.4vw, 52px);
+  letter-spacing: -0.02em;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+/* ===== Über mich ===== */
+.ueber-raster {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+
+.ueber-gross {
+  font-size: clamp(19px, 2.2vw, 24px);
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.ueber-text p {
+  margin-bottom: 16px;
+  max-width: 460px;
+  font-size: 16.5px;
+}
+
+.ueber-text strong { color: var(--rot); }
+
+.stationen {
+  list-style: none;
+}
+
+.stationen li {
+  padding: 13px 0;
+  border-top: 2px solid var(--schwarz);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stationen li:last-child { border-bottom: 2px solid var(--schwarz); }
+
+.stationen strong {
+  font-weight: 700;
+  font-size: 16.5px;
+}
+
+.stationen span {
+  color: var(--grau);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+/* ===== Themen ===== */
+.themen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.thema h3 {
+  color: var(--rot);
+  font-weight: 800;
+  font-size: clamp(21px, 2.4vw, 27px);
+  border-top: 3px solid var(--rot);
+  padding-top: 14px;
+  margin-bottom: 10px;
+}
+
+.thema p {
+  color: var(--schwarz);
+  font-size: 16.5px;
+}
+
+/* ===== Kontakt (roter Block) ===== */
+.abschnitt-rot {
+  background: var(--rot);
+  color: var(--weiss);
+  max-width: none;
+}
+
+.kontakt-raster {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+
+.abschnitt-rot h2 { color: var(--weiss); }
+
+.kontakt-text p {
+  font-size: clamp(16.5px, 1.8vw, 19px);
+  margin-bottom: 18px;
+  max-width: 460px;
+}
+
+.insta {
+  color: var(--weiss);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.insta:hover { text-decoration: none; }
+
+/* ===== Formular ===== */
+.formular {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--weiss);
+  padding: clamp(24px, 3vw, 36px);
+  color: var(--schwarz);
+}
+
+.formular label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.formular input,
+.formular textarea {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 12px 14px;
+  border: 2px solid var(--schwarz);
+  background: var(--weiss);
+  color: var(--schwarz);
+}
+
+.formular input:focus,
+.formular textarea:focus {
+  outline: none;
+  border-color: var(--rot);
+}
+
+.formular .knopf-weiss {
+  background: var(--rot);
+  color: var(--weiss);
+}
+
+.formular .knopf-weiss:hover { background: var(--schwarz); }
+
+.formular-hinweis {
+  font-size: 13px;
+  color: var(--grau);
+}
+
+.formular-hinweis a { color: var(--grau); }
+
+/* ===== Fußzeile ===== */
+.fuss {
+  padding: 26px clamp(20px, 5vw, 64px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 14.5px;
+  color: var(--grau);
+}
+
+.fuss nav { display: flex; gap: 22px; }
+
+.fuss a { color: var(--schwarz); text-decoration: none; font-weight: 500; }
+.fuss a:hover { color: var(--rot); }
+
+/* ===== Unterseiten ===== */
+.rechtsseite {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px);
+}
+
+.rechtsseite h1 {
+  font-weight: 800;
+  font-size: clamp(30px, 5vw, 46px);
+  letter-spacing: -0.02em;
+  margin-bottom: 26px;
+}
+
+.rechtsseite h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 30px 0 8px;
+}
+
+.rechtsseite p { margin-bottom: 14px; }
+
+.zurueck {
+  display: inline-block;
+  margin-bottom: 26px;
+  color: var(--rot);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.zurueck:hover { text-decoration: underline; }
+
+.platzhalter-inline {
+  color: var(--rot);
+  border-left: 3px dashed var(--rot);
+  padding-left: 10px;
+}
+
+/* ===== Danke-Seite ===== */
+.danke {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  gap: 14px;
+}
+
+.danke h1 {
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 52px);
+  color: var(--rot);
+}
+
+/* ===== Handy ===== */
+@media (max-width: 800px) {
+  .held { grid-template-columns: 1fr; }
+  .kontakt-raster { grid-template-columns: 1fr; }
+  .ueber-raster { grid-template-columns: 1fr; }
+  .held-info { padding-top: 0; }
+}

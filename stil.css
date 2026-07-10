@@ -75,13 +75,17 @@ body {
 /* ===== Hero: eine Botschaft, großes Bild ===== */
 .held {
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
+  grid-template-columns: 1.1fr 1fr;
   gap: clamp(28px, 4vw, 64px);
   align-items: center;
   max-width: 1280px;
   margin: 0 auto;
-  padding: clamp(24px, 4vw, 56px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 72px);
+  padding: clamp(24px, 4vw, 56px) clamp(20px, 5vw, 64px) 0;
 }
+
+.held-bild { align-self: end; }
+
+.held-info { padding-bottom: clamp(40px, 5vw, 72px); }
 
 .held-info h1 {
   font-weight: 800;
@@ -113,9 +117,13 @@ body {
 .held-bild img {
   width: 100%;
   display: block;
-  aspect-ratio: 5 / 6;
-  object-fit: cover;
-  object-position: 60% 15%;
+}
+
+.kontakt-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
 
 /* ===== Knöpfe ===== */
@@ -392,8 +400,6 @@ body {
     gap: 22px;
     padding-top: 12px;
   }
-  .held-bild { order: -1; }
-  .held-bild img { aspect-ratio: 4 / 4.4; }
   .kontakt-raster { grid-template-columns: 1fr; }
 
   .wahl-badge { margin-bottom: 18px; }

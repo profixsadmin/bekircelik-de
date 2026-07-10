@@ -1,8 +1,7 @@
 /* ============================================
    bekircelik.de – Kommunalwahl 2026
-   Design-Vorlage: Wahlplakat Die Linke
-   Weniger ist mehr: Weiß, Schwarz, Linke-Rot
-   Schrift: Work Sans
+   Klar, modern, wenig Text, großes Bild.
+   Weiß, Schwarz, Linke-Rot. Schrift: Work Sans
    ============================================ */
 
 :root {
@@ -10,7 +9,6 @@
   --schwarz: #191919;
   --weiss: #ffffff;
   --grau: #5f5f5f;
-  --hellgrau: #f4f4f4;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,13 +21,6 @@ body {
   color: var(--schwarz);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
 }
 
 /* ===== Kopfzeile ===== */
@@ -77,103 +68,66 @@ body {
 
 .kopf-cta:hover { background: var(--schwarz); }
 
-/* ===== Hero ===== */
+/* ===== Hero: eine Botschaft, großes Bild ===== */
 .held {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: clamp(28px, 5vw, 72px);
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(28px, 4vw, 64px);
   align-items: center;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: clamp(28px, 5vw, 64px) clamp(20px, 5vw, 64px) clamp(48px, 7vw, 96px);
+  padding: clamp(24px, 4vw, 56px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 72px);
 }
 
-.held-bild {
-  position: relative;
-}
-
-.held-bild img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: 60% 20%;
-}
-
-/* Plakat-Chips: weiße Blöcke mit rotem Text, wie auf dem Wahlplakat */
-.held-chips {
-  position: absolute;
-  left: 0;
-  bottom: clamp(24px, 4vw, 48px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.chip {
-  background: var(--weiss);
-  padding: 6px 16px 8px;
-  display: inline-block;
-}
-
-.chip-rot {
-  color: var(--rot);
+.held-info h1 {
   font-weight: 800;
-  font-size: clamp(26px, 3.6vw, 44px);
-  line-height: 1.08;
-  letter-spacing: -0.015em;
+  font-size: clamp(34px, 4.6vw, 62px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
 }
 
-.chip-name {
-  color: var(--schwarz);
-  font-weight: 300;
-  font-size: clamp(20px, 2.4vw, 30px);
-  margin-top: -2px;
+.held-info h1 .rot { color: var(--rot); }
+
+.held-sub {
+  color: var(--grau);
+  font-size: clamp(15px, 1.6vw, 18px);
+  margin-bottom: 32px;
 }
 
-.held-info { padding-top: 8px; }
-
-/* Rotes Kästchen, leicht gedreht – Zitat vom Linke-Logo-Block */
 .wahl-badge {
   display: inline-block;
   background: var(--rot);
   color: var(--weiss);
   font-weight: 800;
-  font-size: clamp(15px, 1.6vw, 18px);
-  padding: 8px 16px;
+  font-size: clamp(14px, 1.5vw, 17px);
+  padding: 7px 15px;
   transform: rotate(-2deg);
-  margin-bottom: 28px;
+  margin-bottom: 26px;
 }
 
-.kandidatur {
-  list-style: none;
-  margin-bottom: 28px;
+.held-bild img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 5 / 6;
+  object-fit: cover;
+  object-position: 60% 15%;
 }
 
-.kandidatur li {
-  padding: 14px 0;
-  border-top: 2px solid var(--schwarz);
-  display: flex;
-  flex-direction: column;
+/* ===== Heimat-Band ===== */
+.band {
+  background: var(--rot);
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px);
 }
 
-.kandidatur li:last-child { border-bottom: 2px solid var(--schwarz); }
-
-.kandidatur strong {
-  font-weight: 700;
-  font-size: clamp(17px, 1.9vw, 21px);
-}
-
-.kandidatur span {
-  color: var(--grau);
-  font-size: clamp(14px, 1.5vw, 16px);
-}
-
-.held-satz {
-  font-size: clamp(17px, 1.9vw, 21px);
-  font-weight: 500;
-  max-width: 420px;
-  margin-bottom: 28px;
+.band p {
+  max-width: 1280px;
+  margin: 0 auto;
+  color: var(--weiss);
+  font-weight: 800;
+  font-size: clamp(28px, 4.4vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
 }
 
 /* ===== Knöpfe ===== */
@@ -193,76 +147,43 @@ body {
 
 .knopf:hover { background: var(--schwarz); }
 
-.knopf-weiss {
-  background: var(--weiss);
-  color: var(--rot);
-}
-
-.knopf-weiss:hover {
-  background: var(--schwarz);
-  color: var(--weiss);
-}
-
 /* ===== Abschnitte ===== */
 .abschnitt {
-  padding: clamp(56px, 8vw, 110px) clamp(20px, 5vw, 64px);
-  max-width: 1200px;
+  padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 64px);
+  max-width: 1280px;
   margin: 0 auto;
 }
 
 .abschnitt h2 {
   font-weight: 800;
-  font-size: clamp(30px, 4.4vw, 52px);
+  font-size: clamp(28px, 4vw, 46px);
   letter-spacing: -0.02em;
-  margin-bottom: clamp(28px, 4vw, 48px);
+  margin-bottom: clamp(22px, 3vw, 36px);
 }
 
-/* ===== Über mich ===== */
-.ueber-raster {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(32px, 5vw, 80px);
-  align-items: start;
-}
-
+/* ===== Wer ich bin ===== */
 .ueber-gross {
-  font-size: clamp(19px, 2.2vw, 24px);
+  font-size: clamp(19px, 2.4vw, 27px);
   font-weight: 500;
   line-height: 1.45;
-  margin-bottom: 18px;
+  max-width: 760px;
+  margin-bottom: 30px;
 }
 
-.ueber-text p {
-  margin-bottom: 16px;
-  max-width: 460px;
-  font-size: 16.5px;
-}
+.ueber-gross strong { color: var(--rot); font-weight: 800; }
 
-.ueber-text strong { color: var(--rot); }
-
-.stationen {
+.fakten {
   list-style: none;
-}
-
-.stationen li {
-  padding: 13px 0;
-  border-top: 2px solid var(--schwarz);
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.stationen li:last-child { border-bottom: 2px solid var(--schwarz); }
-
-.stationen strong {
+.fakten li {
+  border: 2px solid var(--schwarz);
+  padding: 8px 16px;
   font-weight: 700;
-  font-size: 16.5px;
-}
-
-.stationen span {
-  color: var(--grau);
   font-size: 14.5px;
-  line-height: 1.5;
 }
 
 /* ===== Themen ===== */
@@ -275,15 +196,15 @@ body {
 .thema h3 {
   color: var(--rot);
   font-weight: 800;
-  font-size: clamp(21px, 2.4vw, 27px);
+  font-size: clamp(22px, 2.6vw, 30px);
   border-top: 3px solid var(--rot);
   padding-top: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .thema p {
-  color: var(--schwarz);
   font-size: 16.5px;
+  max-width: 320px;
 }
 
 /* ===== Kontakt (roter Block) ===== */
@@ -294,7 +215,7 @@ body {
 }
 
 .kontakt-raster {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -305,9 +226,9 @@ body {
 .abschnitt-rot h2 { color: var(--weiss); }
 
 .kontakt-text p {
-  font-size: clamp(16.5px, 1.8vw, 19px);
-  margin-bottom: 18px;
-  max-width: 460px;
+  font-size: clamp(17px, 2vw, 21px);
+  margin-bottom: 22px;
+  max-width: 420px;
 }
 
 .insta {
@@ -416,12 +337,6 @@ body {
 
 .zurueck:hover { text-decoration: underline; }
 
-.platzhalter-inline {
-  color: var(--rot);
-  border-left: 3px dashed var(--rot);
-  padding-left: 10px;
-}
-
 /* ===== Danke-Seite ===== */
 .danke {
   min-height: 70vh;
@@ -443,7 +358,7 @@ body {
 /* ===== Handy ===== */
 @media (max-width: 800px) {
   .held { grid-template-columns: 1fr; }
+  .held-bild { order: -1; }
+  .held-bild img { aspect-ratio: 4 / 4.4; }
   .kontakt-raster { grid-template-columns: 1fr; }
-  .ueber-raster { grid-template-columns: 1fr; }
-  .held-info { padding-top: 0; }
 }

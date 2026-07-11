@@ -227,7 +227,7 @@ body {
 /* ===== Themen ===== */
 .themen {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(20px, 3vw, 40px);
 }
 
@@ -415,7 +415,7 @@ body {
   }
   .kontakt-raster { grid-template-columns: 1fr; }
   .abschnitt-raster { grid-template-columns: 1fr; gap: 18px; }
-  .themen { gap: 26px; }
+  .themen { grid-template-columns: 1fr; gap: 26px; }
 
   .wahl-badge { margin-bottom: 18px; }
   .held-info h1 { margin-bottom: 12px; }

@@ -122,9 +122,34 @@ body {
 .kontakt-links {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   align-items: flex-start;
+  margin-top: 26px;
 }
+
+.kontakt-knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--weiss);
+  color: var(--schwarz);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16.5px;
+  padding: 13px 22px;
+  transition: transform 0.12s ease;
+}
+
+.kontakt-knopf svg { width: 24px; height: 24px; flex-shrink: 0; }
+
+.kontakt-knopf:hover { transform: translateY(-2px); }
+
+.kontakt-wa {
+  font-size: 18px;
+  padding: 15px 26px;
+}
+
+.kontakt-wa svg { width: 28px; height: 28px; color: #25d366; }
 
 /* ===== Knöpfe ===== */
 .knopf {
@@ -145,7 +170,7 @@ body {
 
 /* ===== Abschnitte ===== */
 .abschnitt {
-  padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 64px);
+  padding: clamp(34px, 5vw, 60px) clamp(20px, 5vw, 64px);
   max-width: 1280px;
   margin: 0 auto;
 }
@@ -158,28 +183,25 @@ body {
 }
 
 /* ===== Wer ich bin ===== */
+.ueber-text { max-width: 680px; }
+
 .ueber-gross {
-  font-size: clamp(19px, 2.4vw, 27px);
-  font-weight: 500;
-  line-height: 1.45;
-  max-width: 760px;
-  margin-bottom: 30px;
-}
-
-.ueber-gross strong { color: var(--rot); font-weight: 800; }
-
-.fakten {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.fakten li {
-  border: 2px solid var(--schwarz);
-  padding: 8px 16px;
+  font-size: clamp(19px, 2.4vw, 26px);
   font-weight: 700;
-  font-size: 14.5px;
+  margin-bottom: 14px;
+}
+
+.ueber-text p {
+  font-size: 16.5px;
+  margin-bottom: 14px;
+}
+
+.ueber-text p.ueber-gross { font-size: clamp(19px, 2.4vw, 26px); }
+
+.ueber-schluss {
+  color: var(--rot);
+  font-weight: 700;
+  font-size: 17.5px !important;
 }
 
 /* ===== Themen ===== */
@@ -201,33 +223,6 @@ body {
 .thema p {
   font-size: 16.5px;
   max-width: 320px;
-}
-
-/* ===== Qualifikationen: dezente Urkunden-Galerie ===== */
-.galerie {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 14px;
-}
-
-.galerie a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1 / 1.35;
-  border: 1px solid #e2e2e2;
-  background: var(--weiss);
-  padding: 10px;
-  transition: border-color 0.15s ease;
-}
-
-.galerie a:hover { border-color: var(--rot); }
-
-.galerie img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
 }
 
 /* ===== Kontakt (roter Block) ===== */
@@ -396,12 +391,6 @@ body {
   .wahl-badge { margin-bottom: 18px; }
   .held-info h1 { margin-bottom: 12px; }
   .held-sub { margin-bottom: 24px; }
-
-  .fakten li {
-    padding: 7px 13px;
-    font-size: 13.5px;
-    border-width: 1.5px;
-  }
 
   .knopf { display: block; text-align: center; }
 

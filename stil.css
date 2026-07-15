@@ -130,7 +130,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  align-items: flex-start;
+  align-items: stretch;
+  max-width: 300px;
   margin-top: 26px;
 }
 
@@ -151,12 +152,7 @@ body {
 
 .kontakt-knopf:hover { transform: translateY(-2px); }
 
-.kontakt-wa {
-  font-size: 18px;
-  padding: 15px 26px;
-}
-
-.kontakt-wa svg { width: 28px; height: 28px; color: #25d366; }
+.kontakt-wa svg { color: #25d366; }
 
 /* ===== Knöpfe ===== */
 .knopf {

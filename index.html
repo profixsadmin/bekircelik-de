@@ -61,7 +61,7 @@
           </a>
         </div>
       </div>
-      <form class="formular" action="https://formsubmit.co/celikbekir@outlook.de" method="POST">
+      <form class="formular" id="kontaktformular" action="https://formsubmit.co/celikbekir@outlook.de" method="POST">
         <input type="hidden" name="_subject" value="Nachricht über bekircelik.de">
         <input type="hidden" name="_next" value="https://bekircelik.de/danke.html">
         <input type="hidden" name="_captcha" value="false">
@@ -149,5 +149,34 @@
     </nav>
   </footer>
 
+
+  <script>
+    // Sicherheitsnetz: wenn der Formular-Dienst ausfällt, öffnet sich das Mail-Programm
+    document.getElementById("kontaktformular").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const knopf = form.querySelector("button[type=submit]");
+      const name = form.elements["name"].value;
+      const email = form.elements["email"].value;
+      const nachricht = form.elements["nachricht"].value;
+      knopf.disabled = true;
+      knopf.textContent = "Wird gesendet …";
+      try {
+        const antwort = await fetch("https://formsubmit.co/ajax/celikbekir@outlook.de", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ name: name, email: email, nachricht: nachricht, _subject: "Nachricht über bekircelik.de" })
+        });
+        if (!antwort.ok) throw new Error("Dienst nicht erreichbar");
+        window.location.href = "danke.html";
+      } catch (fehler) {
+        const betreff = encodeURIComponent("Nachricht über bekircelik.de");
+        const inhalt = encodeURIComponent("Name: " + name + "\nE-Mail: " + email + "\n\n" + nachricht);
+        window.location.href = "mailto:celikbekir@outlook.de?subject=" + betreff + "&body=" + inhalt;
+        knopf.disabled = false;
+        knopf.textContent = "Nachricht senden";
+      }
+    });
+  </script>
 </body>
 </html>

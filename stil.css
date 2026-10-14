@@ -790,3 +790,8 @@ body {
 .lese-bild img { height: 340px; max-height: none; object-fit: cover; }
 @media (max-width: 720px) { .lese-bild img { height: 240px; } }
 .lese-bild .karte-bild.platz { display: flex; }
+
+/* Logo der Fraktion als Kartenbild: ganz sichtbar auf Weiß */
+.karte-bild.logo { background: var(--weiss); border: 1px solid #dcdcdc; }
+.karte-bild.logo img { object-fit: contain; padding: 10px; background: var(--weiss); }
+.lese-bild .karte-bild.logo img { background: var(--weiss); height: 300px; }

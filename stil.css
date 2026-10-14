@@ -672,3 +672,26 @@ body {
 @media (max-width: 380px) {
   .kopf-nav a[href="#ueber-mich"] { display: none; }
 }
+
+/* ===== Lesbarkeit: Fließtext in klarer System-Schrift, größer, mehr Zeilenabstand ===== */
+:root {
+  --text-schrift: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.ueber-text p:not(.ueber-gross),
+.karte-text p,
+.thema p,
+.abschnitt-lead,
+.kontakt-text p {
+  font-family: var(--text-schrift);
+  font-size: 18px;
+  line-height: 1.7;
+  color: #262626;
+}
+
+.ueber-text strong {
+  font-weight: 700;
+  color: #000;
+}
+
+.karte-text p:last-child { font-size: 17px; color: #262626; }

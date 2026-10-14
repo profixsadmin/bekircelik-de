@@ -26,7 +26,7 @@
   <meta name="theme-color" content="#e3000f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23e3000f'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="fonts/worksans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="stil.css?v=54">
+  <link rel="stylesheet" href="stil.css?v=57">
 </head>
 <body>
 
@@ -129,6 +129,14 @@
             </div>
           </li>
           <li class="karte mit-bild" data-typ="politik">
+            <span class="karte-bild platz" aria-hidden="true"><small>21.09. bis 03.11.</small><b>Aufbau</b><small>der Fraktion</small></span>
+            <div class="karte-text">
+              <p class="karte-kopf"><time>21.09. bis 03.11.2026</time><span class="karte-art">Fraktion</span></p>
+              <h3>Organisation und Struktur der Fraktion</h3>
+              <p>Bis zur ersten Sitzung des Kreistags klären wir als Kreistagsfraktion Die Linke Hameln-Pyrmont gerade alles Strategische und Organisatorische.</p>
+            </div>
+          </li>
+          <li class="karte mit-bild" data-typ="politik">
             <a class="karte-bild foto foto-portrait" href="bilder/aktuelles/2026-09-21-fraktionsvorsitz.jpg" target="_blank" rel="noopener"><img src="bilder/aktuelles/2026-09-21-fraktionsvorsitz.jpg" alt="Bekir Çelik, Vorsitzender der Kreistagsfraktion Die Linke Hameln-Pyrmont" loading="lazy"></a>
             <div class="karte-text">
               <p class="karte-kopf"><time>21.09.2026</time><span class="karte-art">Fraktion</span></p>
@@ -153,7 +161,7 @@
             </div>
           </li>
           <li class="karte mit-bild" data-typ="politik">
-            <a class="karte-bild foto" href="bilder/aktuelles/2026-07-01-zulassung.jpg" target="_blank" rel="noopener"><img src="bilder/aktuelles/2026-07-01-zulassung.jpg" alt="Das Team von Die Linke Hameln-Pyrmont an der Weser, Zulassung zur Kommunalwahl" loading="lazy"></a>
+            <a class="karte-bild foto foto-kandidatur" href="bilder/aktuelles/2026-07-01-kandidatur.jpg" target="_blank" rel="noopener"><img src="bilder/aktuelles/2026-07-01-kandidatur.jpg" alt="Bekir Çelik an der Weser in Hameln, Daumen hoch" loading="lazy"></a>
             <div class="karte-text">
               <p class="karte-kopf"><time>01.07.2026</time><span class="karte-art">Kandidatur</span></p>
               <h3>Offiziell als Kandidat zugelassen</h3>
@@ -171,7 +179,7 @@
     <div class="abschnitt-raster">
       <div>
         <h2>Was mir wichtig ist</h2>
-        <p class="abschnitt-lead">Drei Themen, für die ich mich im Kreistag stark mache.</p>
+        <p class="abschnitt-lead">Ich will die Menschen mitnehmen, Entscheidungen transparent mit euch teilen und zeigen, wie Politik funktioniert. Drei Themen, für die ich mich im Kreistag stark mache.</p>
       </div>
       <div class="themen">
       <article class="thema">
@@ -189,7 +197,7 @@
       </div>
       <a class="knopf knopf-pdf" href="dokumente/wahlprogramm-die-linke-hameln-pyrmont.pdf" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
-        Mein Wahlprogramm (PDF)
+        Unser Wahlprogramm (PDF)
       </a>
     </div>
   </section>
@@ -201,8 +209,8 @@
         <h2>Ich höre zu.</h2>
         <p>
           Politik fängt für mich beim Zuhören an. Erzähl mir, was dich in
-          Hameln-Pyrmont bewegt. Jede Nachricht lese ich selbst und nehme
-          deine Anliegen mit in den Kreistag.
+          Hameln-Pyrmont bewegt. Jede Nachricht lese ich selbst und werde
+          diese Themen mit in die Politik aufnehmen.
         </p>
         <div class="kontakt-links">
           <a class="kontakt-knopf kontakt-wa" href="https://wa.me/4915679812579" target="_blank" rel="noopener">
@@ -327,6 +335,21 @@
         knopf.textContent = "Nachricht senden";
       }
     });
+  </script>
+  <a class="kontakt-schwebe" id="kontakt-schwebe" href="#kontakt" aria-label="Schreib mir">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+    <span>Schreib mir</span>
+  </a>
+  <script>
+    // Schwebender Kontakt-Knopf: weg, sobald der Kontaktbereich sichtbar ist
+    (function () {
+      const knopf = document.getElementById("kontakt-schwebe");
+      const ziel = document.getElementById("kontakt");
+      if (!knopf || !ziel || !("IntersectionObserver" in window)) return;
+      new IntersectionObserver(function (e) {
+        knopf.classList.toggle("weg", e[0].isIntersecting);
+      }, { threshold: 0.15 }).observe(ziel);
+    })();
   </script>
 </body>
 </html>

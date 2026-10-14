@@ -663,3 +663,12 @@ body {
 
   .fuss { justify-content: center; text-align: center; }
 }
+
+/* Kleine Handys: Menü passt nicht in die Breite, Themen-Link entfällt */
+@media (max-width: 480px) {
+  .kopf-nav a[href="#themen"] { display: none; }
+}
+
+@media (max-width: 380px) {
+  .kopf-nav a[href="#ueber-mich"] { display: none; }
+}

@@ -26,7 +26,7 @@
   <meta name="theme-color" content="#e3000f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23e3000f'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="fonts/worksans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="stil.css?v=57">
+  <link rel="stylesheet" href="stil.css?v=60">
 </head>
 <body>
 
@@ -128,7 +128,7 @@
               <p>15:00 Uhr, Forum, Mühlenstraße 16, Hameln. Mit dieser ersten Sitzung bin ich offiziell im Amt. Die Sitzung ist öffentlich.</p>
             </div>
           </li>
-          <li class="karte mit-bild" data-typ="politik">
+          <li class="karte mit-bild" data-typ="update">
             <span class="karte-bild platz" aria-hidden="true"><small>21.09. bis 03.11.</small><b>Aufbau</b><small>der Fraktion</small></span>
             <div class="karte-text">
               <p class="karte-kopf"><time>21.09. bis 03.11.2026</time><span class="karte-art">Fraktion</span></p>
@@ -136,12 +136,12 @@
               <p>Bis zur ersten Sitzung des Kreistags klären wir als Kreistagsfraktion Die Linke Hameln-Pyrmont gerade alles Strategische und Organisatorische.</p>
             </div>
           </li>
-          <li class="karte mit-bild" data-typ="politik">
+          <li class="karte mit-bild" data-typ="update">
             <a class="karte-bild foto foto-portrait" href="bilder/aktuelles/2026-09-21-fraktionsvorsitz.jpg" target="_blank" rel="noopener"><img src="bilder/aktuelles/2026-09-21-fraktionsvorsitz.jpg" alt="Bekir Çelik, Vorsitzender der Kreistagsfraktion Die Linke Hameln-Pyrmont" loading="lazy"></a>
             <div class="karte-text">
               <p class="karte-kopf"><time>21.09.2026</time><span class="karte-art">Fraktion</span></p>
-              <h3>Zum Fraktionsvorsitzenden gewählt</h3>
-              <p>Die Kreistagsfraktion Die Linke Hameln-Pyrmont hat mich zu ihrem Vorsitzenden gewählt.</p>
+              <h3>Konstituierende Sitzung der Fraktion</h3>
+              <p>Die Kreistagsfraktion Die Linke Hameln-Pyrmont hat sich konstituiert. Wir sind zu dritt: Larissa Nitschke, Manfred Ludorff und ich. Die Fraktion hat mich zum Vorsitzenden gewählt.</p>
             </div>
           </li>
           <li class="karte mit-bild" data-typ="engagement">
@@ -263,7 +263,7 @@
     // Aktuelles: Filterknöpfe aus den Karten bauen, 6 Karten sichtbar, ältere per Knopf
     (function () {
       const SICHTBAR = 6;
-      const NAMEN = { termin: "Termine", politik: "Politik", engagement: "Engagement", beitrag: "Beiträge" };
+      const NAMEN = { update: "Updates", news: "News", termin: "Termine", politik: "Politik", engagement: "Engagement", beitrag: "Beiträge" };
       const karten = Array.prototype.slice.call(document.querySelectorAll("#karten .karte"));
       const filter = document.getElementById("filter");
       const mehr = document.getElementById("aelter-knopf");
@@ -336,11 +336,56 @@
       }
     });
   </script>
+  <dialog class="lese-fenster" id="lese-fenster" aria-labelledby="lese-titel">
+    <button type="button" class="lese-zu" id="lese-zu" aria-label="Schließen">Schließen ✕</button>
+    <div class="lese-bild" id="lese-bild"></div>
+    <p class="lese-kopf" id="lese-kopf"></p>
+    <h3 id="lese-titel"></h3>
+    <div class="lese-text" id="lese-text"></div>
+  </dialog>
+
   <a class="kontakt-schwebe" id="kontakt-schwebe" href="#kontakt" aria-label="Schreib mir">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
     <span>Schreib mir</span>
   </a>
   <script>
+    // Aktuelles: Karte anklicken öffnet den Eintrag im Lese-Fenster (wie ein kleiner Blogbeitrag)
+    (function () {
+      const fenster = document.getElementById("lese-fenster");
+      if (!fenster || typeof fenster.showModal !== "function") return;
+      const el = function (id) { return document.getElementById(id); };
+      function oeffnen(karte) {
+        const bild = karte.querySelector(".karte-bild");
+        const box = el("lese-bild");
+        box.innerHTML = "";
+        if (bild) {
+          const kopie = bild.cloneNode(true);
+          kopie.removeAttribute("href");
+          kopie.removeAttribute("target");
+          box.appendChild(kopie);
+        }
+        const text = karte.querySelector(".karte-text");
+        el("lese-kopf").innerHTML = text.querySelector(".karte-kopf").innerHTML;
+        el("lese-titel").textContent = text.querySelector("h3").textContent;
+        const inhalt = el("lese-text");
+        inhalt.innerHTML = "";
+        text.querySelectorAll(":scope > p:not(.karte-kopf), :scope > .karte-voll > *").forEach(function (p) {
+          inhalt.appendChild(p.cloneNode(true));
+        });
+        fenster.showModal();
+      }
+      document.querySelectorAll("#karten .karte").forEach(function (k) {
+        k.tabIndex = 0;
+        k.setAttribute("role", "button");
+        k.addEventListener("click", function (e) { e.preventDefault(); oeffnen(k); });
+        k.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); oeffnen(k); }
+        });
+      });
+      el("lese-zu").addEventListener("click", function () { fenster.close(); });
+      fenster.addEventListener("click", function (e) { if (e.target === fenster) fenster.close(); });
+    })();
+
     // Schwebender Kontakt-Knopf: weg, sobald der Kontaktbereich sichtbar ist
     (function () {
       const knopf = document.getElementById("kontakt-schwebe");

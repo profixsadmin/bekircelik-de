@@ -26,7 +26,7 @@
   <meta name="theme-color" content="#e3000f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23e3000f'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="fonts/worksans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="stil.css?v=61">
+  <link rel="stylesheet" href="stil.css?v=63">
 </head>
 <body>
 
@@ -61,7 +61,7 @@
       <p class="ueber-gross">
         Geboren in Braunschweig, aufgewachsen in Hameln-Pyrmont und seit 2024 Vater.
       </p>
-      <p> Hameln-Pyrmont ist mein Zuhause: Hier lebe und arbeite ich, hier wachsen meine Zwillingstöchter auf. Genau deshalb mache ich <strong>Kommunalpolitik</strong>. Bei der letzten Wahl haben mir die Menschen im Landkreis ihr Vertrauen gegeben. Seitdem sitze ich im Kreistag und führe die <strong>Kreistagsfraktion Die Linke Hameln-Pyrmont</strong> als <strong>Vorsitzender</strong>. </p>
+      <p> Hameln-Pyrmont ist mein Zuhause: Hier lebe und arbeite ich, hier wachsen meine Zwillingstöchter auf. Genau deshalb mache ich <strong>Kommunalpolitik</strong>. Bei der <strong>Kommunalwahl am 13.09.2026</strong> haben uns die Bürgerinnen und Bürger gewählt. Seitdem sitze ich im Kreistag und führe die <strong>Kreistagsfraktion Die Linke Hameln-Pyrmont</strong> als <strong>Vorsitzender</strong>. </p>
       <button type="button" class="mehr-knopf" id="mehr-knopf" aria-expanded="false" aria-controls="mehr">
         <span>Mehr über mich</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
@@ -344,10 +344,26 @@
     <div class="lese-text" id="lese-text"></div>
   </dialog>
 
-  <a class="kontakt-schwebe" id="kontakt-schwebe" href="#kontakt" aria-label="Schreib mir">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
-    <span>Schreib mir</span>
-  </a>
+  <div class="kontakt-fab" id="kontakt-fab">
+    <div class="fab-menue" id="fab-menue" hidden>
+      <a href="https://wa.me/4915679812579" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:celikbekir@outlook.de">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+        E-Mail
+      </a>
+      <a href="#kontakt">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z"/></svg>
+        Nachricht schreiben
+      </a>
+    </div>
+    <button type="button" class="kontakt-schwebe" id="kontakt-schwebe" aria-expanded="false" aria-controls="fab-menue" aria-label="Kontakt aufnehmen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+      <span>Kontakt</span>
+    </button>
+  </div>
   <script>
     // Aktuelles: Karte anklicken öffnet den Eintrag im Lese-Fenster (wie ein kleiner Blogbeitrag)
     (function () {
@@ -386,14 +402,30 @@
       fenster.addEventListener("click", function (e) { if (e.target === fenster) fenster.close(); });
     })();
 
-    // Schwebender Kontakt-Knopf: weg, sobald der Kontaktbereich sichtbar ist
+    // Schwebender Kontakt-Knopf: Auswahl WhatsApp, E-Mail, Nachricht. Weg im Kopfbereich und im Kontaktbereich
     (function () {
+      const fab = document.getElementById("kontakt-fab");
       const knopf = document.getElementById("kontakt-schwebe");
-      const ziel = document.getElementById("kontakt");
-      if (!knopf || !ziel || !("IntersectionObserver" in window)) return;
-      new IntersectionObserver(function (e) {
-        knopf.classList.toggle("weg", e[0].isIntersecting);
-      }, { threshold: 0.15 }).observe(ziel);
+      const menue = document.getElementById("fab-menue");
+      if (!fab || !knopf || !menue) return;
+      function zu() { menue.hidden = true; knopf.setAttribute("aria-expanded", "false"); }
+      knopf.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const offen = menue.hidden;
+        menue.hidden = !offen;
+        knopf.setAttribute("aria-expanded", offen ? "true" : "false");
+      });
+      menue.addEventListener("click", zu);
+      document.addEventListener("click", zu);
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") zu(); });
+      if (!("IntersectionObserver" in window)) return;
+      const sichtbar = { start: false, kontakt: false };
+      function pruefen() { const weg = sichtbar.start || sichtbar.kontakt; fab.classList.toggle("weg", weg); if (weg) zu(); }
+      [["start", "start"], ["kontakt", "kontakt"]].forEach(function (p) {
+        const ziel = document.getElementById(p[0]);
+        if (!ziel) return;
+        new IntersectionObserver(function (e) { sichtbar[p[1]] = e[0].isIntersecting; pruefen(); }, { threshold: 0.15 }).observe(ziel);
+      });
     })();
   </script>
 </body>

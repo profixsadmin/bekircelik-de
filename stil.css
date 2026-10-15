@@ -795,3 +795,62 @@ body {
 .karte-bild.logo { background: var(--weiss); border: 1px solid #dcdcdc; }
 .karte-bild.logo img { object-fit: contain; padding: 10px; background: var(--weiss); }
 .lese-bild .karte-bild.logo img { background: var(--weiss); height: 300px; }
+
+/* Kontakt-Knopf mit Auswahl (löst die einfache Variante ab) */
+.kontakt-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.kontakt-fab.weg { opacity: 0; pointer-events: none; transform: translateY(12px); }
+
+.kontakt-fab .kontakt-schwebe {
+  position: static;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.kontakt-fab .kontakt-schwebe.weg { opacity: 1; pointer-events: auto; transform: none; }
+
+.fab-menue {
+  display: flex;
+  flex-direction: column;
+  min-width: 230px;
+  background: var(--weiss);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-top: 4px solid var(--rot);
+}
+
+.fab-menue[hidden] { display: none; }
+
+.fab-menue a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  color: var(--schwarz);
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.fab-menue a:last-child { border-bottom: 0; }
+.fab-menue a:hover { background: #f4f4f4; color: var(--rot); }
+.fab-menue svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+@media (max-width: 720px) {
+  .kontakt-fab { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); }
+  .kontakt-fab .kontakt-schwebe { width: 56px; height: 56px; padding: 0; justify-content: center; border-radius: 0; }
+  .kontakt-fab .kontakt-schwebe span { display: none; }
+  .kontakt-fab .kontakt-schwebe svg { width: 26px; height: 26px; }
+  .fab-menue { min-width: 220px; }
+}
